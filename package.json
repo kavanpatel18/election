@@ -1,0 +1,12 @@
+{
+  "name": "electwise",
+  "version": "1.0.0",
+  "description": "ElectWise — Nonpartisan Interactive Election Education App",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/electwise.test.js",
+    "start": "npx serve . -l 8080"
+  },
+  "keywords": ["election", "civic-education", "nonpartisan", "voting"],
+  "license": "MIT"
+}
