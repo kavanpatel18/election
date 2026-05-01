@@ -124,6 +124,8 @@ function renderSources() {
 }
 
 // ── Wizard ────────────────────────────────────────────────────────────────────
+let wizardInitialized = false;
+
 function buildWizard() {
   const overlay = document.getElementById("wizard-overlay");
   const stepContents = {
@@ -262,24 +264,29 @@ function buildWizard() {
     }
   }
 
-  overlay.querySelector("#wiz-next").addEventListener("click", () => {
-    collectStep();
-    if (wizardStep < WIZARD_STEPS.length - 1) {
-      wizardStep++;
-      renderWizardStep();
-    } else {
+  if (!wizardInitialized) {
+    overlay.querySelector("#wiz-next").addEventListener("click", () => {
+      collectStep();
+      if (wizardStep < WIZARD_STEPS.length - 1) {
+        wizardStep++;
+        renderWizardStep();
+      } else {
+        showDashboard();
+      }
+    });
+
+    overlay.querySelector("#wiz-back").addEventListener("click", () => {
+      if (wizardStep > 0) { wizardStep--; renderWizardStep(); }
+    });
+
+    overlay.querySelector("#wiz-skip").addEventListener("click", () => {
       showDashboard();
-    }
-  });
+    });
+    
+    wizardInitialized = true;
+  }
 
-  overlay.querySelector("#wiz-back").addEventListener("click", () => {
-    if (wizardStep > 0) { wizardStep--; renderWizardStep(); }
-  });
-
-  overlay.querySelector("#wiz-skip").addEventListener("click", () => {
-    showDashboard();
-  });
-
+  wizardStep = 0; // reset on open
   renderWizardStep();
 }
 
