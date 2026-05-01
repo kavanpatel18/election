@@ -92,7 +92,6 @@ function showDashboard() {
   
   saveState(); // Persist the final state
   
-  document.getElementById("hero-section").hidden = true;
   document.getElementById("wizard-overlay").hidden = true;
   document.getElementById("main-nav").hidden = false;
   setSection("timeline");
