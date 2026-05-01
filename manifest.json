@@ -1,0 +1,16 @@
+{
+  "name": "ElectWise — Election Guide",
+  "short_name": "ElectWise",
+  "description": "Your nonpartisan, personalized civic education tool and election checklist.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f111a",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text y='.9em' x='5' font-size='80'>🗳</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

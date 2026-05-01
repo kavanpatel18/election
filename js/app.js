@@ -29,6 +29,34 @@ const state = {
   currentSection: "hero",
 };
 
+// ── State Persistence ────────────────────────────────────────────────────────
+const STATE_KEY = "electwise_state";
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STATE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {
+    console.error("Could not load state", e);
+  }
+  return null;
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STATE_KEY, JSON.stringify(state));
+  } catch (e) {
+    console.error("Could not save state", e);
+  }
+}
+
+function clearState() {
+  try {
+    localStorage.removeItem(STATE_KEY);
+    localStorage.removeItem("electwise_checklist");
+  } catch (e) {}
+}
+
 let t = TRANSLATIONS.en;
 
 // ── Wizard Steps ──────────────────────────────────────────────────────────────
@@ -61,6 +89,10 @@ function showDashboard() {
   renderScenarios(t);
   renderExports(state.milestones, state, t);
   renderSources();
+  
+  saveState(); // Persist the final state
+  
+  document.getElementById("hero-section").hidden = true;
   document.getElementById("wizard-overlay").hidden = true;
   document.getElementById("main-nav").hidden = false;
   setSection("timeline");
@@ -298,6 +330,13 @@ function initNav() {
       setSection(a.dataset.section);
     });
   });
+
+  document.getElementById("nav-start-over")?.addEventListener("click", () => {
+    if (confirm(getTranslations(state.lang).confirmReset || "Are you sure you want to start over? This will clear all your progress.")) {
+      clearState();
+      window.location.reload();
+    }
+  });
 }
 
 // ── Theme & Lang toggles ──────────────────────────────────────────────────────
@@ -347,5 +386,24 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("main-nav").hidden = true;
   initNav();
   initToggles();
-  initHero();
+
+  // Load saved state or start wizard
+  const savedState = loadState();
+  if (savedState && savedState.jurisdictionKey) {
+    Object.assign(state, savedState);
+    if (state.highContrast) document.body.classList.add("high-contrast");
+    document.documentElement.lang = state.lang;
+    showDashboard();
+  } else {
+    initHero();
+  }
+
+  // Register Service Worker for PWA
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(err => {
+        console.warn("Service worker registration failed:", err);
+      });
+    });
+  }
 });

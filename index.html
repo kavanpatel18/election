@@ -6,9 +6,11 @@
   <meta name="description" content="ElectWise — A nonpartisan, interactive civic education tool. Get your personalized election timeline, checklist, quiz, and export options for any jurisdiction." />
   <meta name="robots" content="index, follow" />
   <title>ElectWise — Your Nonpartisan Election Guide</title>
+  <meta name="theme-color" content="#6366f1" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳</text></svg>" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/style-part2.css" />
+  <link rel="stylesheet" href="css/style.css?v=1.1" />
+  <link rel="stylesheet" href="css/style-part2.css?v=1.1" />
 </head>
 <body>
   <a href="#main-content" class="skip-nav">Skip to main content</a>
@@ -24,6 +26,7 @@
         <li><a class="nav-link" data-section="scenarios" href="#" role="button" tabindex="0">🚨 What If?</a></li>
         <li><a class="nav-link" data-section="exports" href="#" role="button" tabindex="0">📤 Export</a></li>
         <li><a class="nav-link" data-section="sources" href="#" role="button" tabindex="0">📚 Sources</a></li>
+        <li><button id="nav-start-over" class="btn btn-ghost btn-small" style="margin-left:1rem">Start Over</button></li>
       </ul>
       <div class="nav-controls">
         <select id="lang-select" class="nav-select" aria-label="Select language">
@@ -153,6 +156,6 @@
     </p>
   </footer>
 
-  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/app.js?v=1.1"></script>
 </body>
 </html>
