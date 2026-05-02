@@ -76,8 +76,25 @@ function generateJSON(milestones, state) {
 }
 
 async function copyJSON(milestones, state) {
-  try { await navigator.clipboard.writeText(generateJSON(milestones, state)); return true; }
-  catch { return false; }
+  const text = generateJSON(milestones, state);
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    // Fallback for non-HTTPS or restricted contexts
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.cssText = "position:fixed;top:-9999px;left:-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
 }
 
 function downloadFile(filename, content, mime) {

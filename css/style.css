@@ -126,6 +126,7 @@ img { max-width: 100%; }
   transition: background var(--transition);
 }
 .icon-btn:hover { background: var(--c-primary); }
+.nav-hamburger { display: none; }
 
 /* ── Buttons ── */
 .btn {

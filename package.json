@@ -7,6 +7,28 @@
     "test": "node tests/electwise.test.js",
     "start": "npx serve . -l 8080"
   },
-  "keywords": ["election", "civic-education", "nonpartisan", "voting"],
-  "license": "MIT"
+  "keywords": [
+    "election",
+    "civic-education",
+    "nonpartisan",
+    "voting"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^29.1.1",
+    "puppeteer": "^24.42.0"
+  },
+  "main": "sw.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavanpatel18/election.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/kavanpatel18/election/issues"
+  },
+  "homepage": "https://github.com/kavanpatel18/election#readme"
 }

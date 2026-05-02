@@ -195,11 +195,13 @@ function renderScenarios(t) {
   html += `</div>`;
   container.innerHTML = html;
 
-  // Animate chevron on open/close
+  // Animate chevron on open/close and update aria-expanded
   container.querySelectorAll(".scenario-card").forEach((el) => {
     el.addEventListener("toggle", () => {
       const chevron = el.querySelector(".scenario-chevron");
+      const summary = el.querySelector(".scenario-summary");
       if (chevron) chevron.style.transform = el.open ? "rotate(90deg)" : "rotate(0deg)";
+      if (summary) summary.setAttribute("aria-expanded", el.open ? "true" : "false");
     });
   });
 }

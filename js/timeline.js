@@ -33,7 +33,7 @@ function computeMilestones(jurisdictionKey, electionDateStr, role) {
     let daysUntil = null;
 
     if (electionDateStr) {
-      dateObj = new Date(electionDateStr);
+      dateObj = new Date(electionDateStr + "T00:00:00");
       dateObj.setHours(0, 0, 0, 0);
       dateObj.setDate(dateObj.getDate() + m.offsetDays);
       daysUntil = Math.round((dateObj - today) / (1000 * 60 * 60 * 24));

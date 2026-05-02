@@ -6,6 +6,13 @@
 
 const CHECKLIST_KEY = "electwise_checklist";
 
+function priorityClass(priority) {
+  if (priority === "High") return "priority-high";
+  if (priority === "Medium") return "priority-med";
+  return "priority-low";
+}
+
+
 function buildChecklistItems(milestones) {
   const items = [];
   let id = 1;
@@ -60,7 +67,7 @@ function renderChecklist(milestones, t) {
   let html = `
     <div class="checklist-header">
       <h2 class="section-title">${t.checklistTitle}</h2>
-      <button class="btn btn-ghost" id="print-checklist-btn" onclick="window.print()" aria-label="${t.checklistPrint}">
+      <button class="btn btn-ghost" id="print-checklist-btn" aria-label="${t.checklistPrint}">
         ${t.checklistPrint}
       </button>
     </div>
@@ -83,7 +90,7 @@ function renderChecklist(milestones, t) {
     html += `<li class="checklist-group">
       <div class="checklist-group-header">
         <span class="checklist-group-title">${group.title}</span>
-        <span class="priority-chip priority-${group.priority.toLowerCase()}">${group.priority}</span>
+        <span class="priority-chip ${priorityClass(group.priority)}">${group.priority}</span>
       </div>
       <ul class="checklist-sub-list">`;
 
@@ -109,6 +116,10 @@ function renderChecklist(milestones, t) {
 
   html += `</ol>`;
   container.innerHTML = html;
+
+  // Attach print button
+  const printBtn = document.getElementById("print-checklist-btn");
+  if (printBtn) printBtn.addEventListener("click", () => window.print());
 
   // Attach event listeners
   container.querySelectorAll(".checklist-checkbox").forEach((cb) => {

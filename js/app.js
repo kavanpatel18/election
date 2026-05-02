@@ -327,15 +327,29 @@ function initNav() {
     a.addEventListener("click", e => {
       e.preventDefault();
       setSection(a.dataset.section);
+      // Close mobile menu when a nav link is clicked
+      document.getElementById("main-nav").classList.remove("nav-open");
     });
   });
 
   document.getElementById("nav-start-over")?.addEventListener("click", () => {
-    if (confirm(getTranslations(state.lang).confirmReset || "Are you sure you want to start over? This will clear all your progress.")) {
+    const msg = (TRANSLATIONS[state.lang] || TRANSLATIONS.en).confirmReset ||
+      "Are you sure you want to start over? This will clear all your progress.";
+    if (confirm(msg)) {
       clearState();
       window.location.reload();
     }
   });
+
+  // Mobile hamburger toggle
+  const hamburger = document.getElementById("nav-hamburger");
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      const nav = document.getElementById("main-nav");
+      const isOpen = nav.classList.toggle("nav-open");
+      hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
 }
 
 // ── Theme & Lang toggles ──────────────────────────────────────────────────────
@@ -381,8 +395,10 @@ function initHero() {
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("main-nav").hidden = true;
+function bootApp() {
+  const mainNav = document.getElementById("main-nav");
+  if (mainNav) mainNav.hidden = true;
+  
   initNav();
   initToggles();
 
@@ -399,10 +415,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Register Service Worker for PWA
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
+    const registerSW = () => {
       navigator.serviceWorker.register("./sw.js").catch(err => {
         console.warn("Service worker registration failed:", err);
       });
-    });
+    };
+    if (document.readyState === "complete") {
+      registerSW();
+    } else {
+      window.addEventListener("load", registerSW);
+    }
   }
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootApp);
+} else {
+  bootApp();
+}

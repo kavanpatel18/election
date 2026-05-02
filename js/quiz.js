@@ -268,6 +268,7 @@ const QUESTION_BANK = {
 };
 
 let quizState = {
+  role: "voter",
   questions: [],
   currentIndex: 0,
   answers: [],
@@ -289,7 +290,7 @@ function renderQuiz(role, t) {
   const container = document.getElementById("quiz-container");
   if (!container) return;
 
-  quizState = { questions: selectQuestions(role), currentIndex: 0, answers: [], started: false, finished: false };
+  quizState = { role, questions: selectQuestions(role), currentIndex: 0, answers: [], started: false, finished: false };
 
   container.innerHTML = `
     <h2 class="section-title">${t.quizTitle}</h2>

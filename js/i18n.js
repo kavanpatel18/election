@@ -85,6 +85,7 @@ const TRANSLATIONS = {
     followUpQ1: 'Show my personalized timeline for [State/Country] with election date [YYYY-MM-DD]',
     followUpQ2: 'Generate an .ics calendar file of my voting milestones',
     followUpQ3: 'Explain what to bring to the polling place in [County/City]',
+    confirmReset: "Are you sure you want to start over? This will clear all your saved progress.",
     footerDisclaimer: "ElectWise is a nonpartisan civic education tool. It does not endorse any candidate, party, or ballot measure. Always verify information with official election authorities.",
   },
 
@@ -169,6 +170,7 @@ const TRANSLATIONS = {
     followUpQ1: 'Mostrar mi cronograma personalizado para [Estado/País] con fecha electoral [YYYY-MM-DD]',
     followUpQ2: 'Generar un archivo .ics con mis hitos electorales',
     followUpQ3: 'Explicar qué llevar al lugar de votación en [Condado/Ciudad]',
+    confirmReset: "¿Estás seguro de que quieres empezar de nuevo? Se borrará todo tu progreso guardado.",
     footerDisclaimer: "ElectWise es una herramienta de educación cívica no partidista. No apoya ningún candidato, partido ni medida electoral. Siempre verifica la información con las autoridades electorales oficiales.",
   },
 
@@ -253,6 +255,7 @@ const TRANSLATIONS = {
     followUpQ1: 'Afficher mon calendrier personnalisé pour [État/Pays] avec date d\'élection [YYYY-MM-DD]',
     followUpQ2: 'Générer un fichier .ics de mes jalons électoraux',
     followUpQ3: 'Expliquer ce qu\'apporter au bureau de vote dans [Département/Ville]',
+    confirmReset: "Êtes-vous sûr de vouloir recommencer ? Tout votre progrès sera effacé.",
     footerDisclaimer: "ElectWise est un outil d'éducation civique non partisan. Il ne soutient aucun candidat, parti ou mesure électorale. Vérifiez toujours les informations auprès des autorités électorales officielles.",
   },
 };
