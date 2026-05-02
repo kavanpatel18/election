@@ -1,6 +1,7 @@
 <div align="center">
   <h1>🗳️ ElectWise</h1>
   <p><strong>A Nonpartisan, Interactive Civic Education App</strong></p>
+  <p><strong><a href="https://electwise-xaeqr4ozba-uc.a.run.app/" target="_blank">🌐 Live Demo</a></strong></p>
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![Code Size](https://img.shields.io/github/languages/code-size/kavanpatel18/election)](https://github.com/kavanpatel18/election)
